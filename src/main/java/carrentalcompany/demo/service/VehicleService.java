@@ -55,6 +55,7 @@ public class VehicleService {
                     .carTypes(optionalCarTypes.get())
                     .model(carDTO.getModel())
                     .price(carDTO.getPrice())
+                    .plate(carDTO.getPlate())
                     .build());
 
             return true;

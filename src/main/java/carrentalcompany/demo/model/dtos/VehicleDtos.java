@@ -16,5 +16,6 @@ public class VehicleDtos {
     private String carType;
     private float price;
     private float amortization;
+    private String plate;
 
 }

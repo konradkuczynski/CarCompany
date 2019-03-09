@@ -25,6 +25,7 @@ public class Vehicle {
 
     private float price;
     private float amortization;
+    private String plate;
 
     @Override
     public String toString() {

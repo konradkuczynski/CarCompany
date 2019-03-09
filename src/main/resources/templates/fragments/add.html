@@ -4,7 +4,7 @@
 
     <form  th:action="@{/add}" method="post" action="/add">
 
-        <!--<input class="dropdown-menu" type="text" placeholder="type" name="carType"/>-->
+        <input type="text" placeholder="type" name="plate"/>
         <select th:each="typ : ${type}" name="carType">
             <option  value="default">Select a type</option>
             <option  th:text="${typ.getType()}" th:value="${typ.getType()}">

@@ -16,6 +16,7 @@ public class CarMapper implements Mapper<Vehicle, VehicleDtos> {
                 .carType(from.getCarTypes().getType())
                 .model(from.getModel())
                 .price(from.getPrice())
+                .plate(from.getPlate())
                 .build();
     }
 }
