@@ -40,7 +40,7 @@ public class HomeController {
         String welcome = "Welcome to my awsome Cars App!";
 
         model.addAttribute("welcome", welcome);
-        model.addAttribute("cars", vehicleService.getVehicle());
+        model.addAttribute("cars", vehicleService.getAllVehiclesDtos());
         model.addAttribute("type", carTypesService.getCarTypes());
         return "vehicles";
     }

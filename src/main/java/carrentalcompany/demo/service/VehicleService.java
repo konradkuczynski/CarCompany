@@ -8,6 +8,7 @@ import carrentalcompany.demo.repository.CarTypesRepository;
 import carrentalcompany.demo.repository.VehicleRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,5 +59,19 @@ public class VehicleService {
 
             return true;
         }
+    }
+
+
+    // ----------------------------------__DTOS-------------------------------------
+
+    public List<VehicleDtos> getAllVehiclesDtos() {
+
+        List<VehicleDtos> vehicleDtos = new ArrayList<>();
+        List<Vehicle> vehicles = vehicleRepository.findAll();
+
+        for (Vehicle vehicle : vehicles) {
+            vehicleDtos.add(carMapper.map(vehicle));
+        }
+        return vehicleDtos;
     }
 }
