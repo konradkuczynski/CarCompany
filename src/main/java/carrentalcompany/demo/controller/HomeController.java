@@ -2,6 +2,7 @@ package carrentalcompany.demo.controller;
 
 
 import carrentalcompany.demo.model.dtos.VehicleDtos;
+import carrentalcompany.demo.service.CarTypesService;
 import carrentalcompany.demo.service.VehicleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +18,11 @@ import javax.validation.Valid;
 public class HomeController {
 
     private VehicleService vehicleService;
+    private CarTypesService carTypesService;
 
-    public HomeController(VehicleService vehicleService) {
+    public HomeController(VehicleService vehicleService, CarTypesService carTypesService) {
         this.vehicleService = vehicleService;
+        this.carTypesService = carTypesService;
     }
 
     @RequestMapping(value = "home")
@@ -38,6 +41,7 @@ public class HomeController {
 
         model.addAttribute("welcome", welcome);
         model.addAttribute("cars", vehicleService.getVehicle());
+        model.addAttribute("type", carTypesService.getCarTypes());
         return "vehicles";
     }
 

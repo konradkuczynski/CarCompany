@@ -2,9 +2,17 @@
 
 
 
-    <form  th:action="@{/add}" th:object="${car}" method="post" action="/add">
+    <form  th:action="@{/add}" method="post" action="/add">
 
-        <input class="text" type="text" placeholder="type" name="carType"/>
+        <!--<input class="dropdown-menu" type="text" placeholder="type" name="carType"/>-->
+        <select th:each="typ : ${type}" name="carType">
+            <option  value="default">Select a type</option>
+            <option  th:text="${typ.getType()}" th:value="${typ.getType()}">
+
+        <!--<input type="hidden" name="carType" th:value="${typ.getType()}"/>-->
+            </option>
+        </select>
+
         <input type="text" placeholder="model" name="model"/>
         <input type="text" placeholder="price" name="price"/>
         <input type="text" placeholder="amortization" name="amortization"/>
@@ -21,3 +29,10 @@
 <!--private String carType;-->
 <!--private float price;-->
 <!--private float amortization;-->
+<!--<tr th:each="car : ${cars}">-->
+    <!--<td th:text="${car.getId()}"></td>-->
+    <!--<td th:text="${car.getCarTypes().getType()}"></td>-->
+    <!--<td th:text="${car.getModel()}"></td>-->
+    <!--<td th:text="${car.getPrice()}"></td>-->
+    <!--<td th:text="${car.getAmortization()}"></td>-->
+
