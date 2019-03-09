@@ -4,6 +4,7 @@ package carrentalcompany.demo.controller;
 import carrentalcompany.demo.model.dtos.VehicleDtos;
 import carrentalcompany.demo.service.CarTypesService;
 import carrentalcompany.demo.service.VehicleService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -33,7 +34,7 @@ public class HomeController {
         model.addAttribute("welcome", welcome);
         return "index";
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "vehicles", method = RequestMethod.GET)
     public String getVehiclesPage(Model model) {
 
@@ -54,6 +55,17 @@ public class HomeController {
 
         return "redirect:/vehicles";
     }
+
+//    @RequestMapping(value = "logout", method = RequestMethod.GET)
+//    public String getPage(Model model) {
+//
+//        String welcome = "Welcome to my awsome Cars App!";
+//
+//        model.addAttribute("welcome", welcome);
+//        model.addAttribute("cars", vehicleService.getAllVehiclesDtos());
+//        model.addAttribute("type", carTypesService.getCarTypes());
+//        return "vehicles";
+//    }
 
 
 }
