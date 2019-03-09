@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/library :: init">
+<body>
+<div class="row" th:replace="fragments/navbar :: navbar"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h4 th:text="${welcome}"></h4>
+        </div>
+    </div>
+    <div class="row" th:replace="fragments/add :: add"></div>
+
+
+    <div class="row" th:replace="fragments/table :: table">
+
+    </div>
+
+    <!--<div class="row"><a href="swagger-ui.html">SwaggerDocs</a> </div>-->
+</div>
+
+
+
+</body>
+</html>

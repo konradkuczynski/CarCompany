@@ -1,0 +1,23 @@
+<div class="col-sm-12" xmlns:th="http://www.w3.org/1999/xhtml" th:fragment="add">
+
+
+
+    <form  th:action="@{/add}" th:object="${car}" method="post" action="/add">
+
+        <input class="text" type="text" placeholder="type" name="carType"/>
+        <input type="text" placeholder="model" name="model"/>
+        <input type="text" placeholder="price" name="price"/>
+        <input type="text" placeholder="amortization" name="amortization"/>
+
+        <button type="submit" class="btn btn-sm btn-success">create</button>
+    </form>
+
+
+
+</div>
+</html>
+
+<!--private String model;-->
+<!--private String carType;-->
+<!--private float price;-->
+<!--private float amortization;-->
