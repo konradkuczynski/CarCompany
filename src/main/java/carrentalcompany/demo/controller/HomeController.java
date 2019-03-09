@@ -12,7 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/")
@@ -27,7 +33,8 @@ public class HomeController {
     }
 
     @RequestMapping(value = "home")
-    public String getHomePage(Model model) {
+    public String getHomePage(Model model, HttpServletRequest request, HttpServletResponse response) {
+        getHeadersInfo(request,response);
 
         String welcome = "Welcome to my awsome Cars App!";
 
@@ -56,16 +63,45 @@ public class HomeController {
         return "redirect:/vehicles";
     }
 
-//    @RequestMapping(value = "logout", method = RequestMethod.GET)
-//    public String getPage(Model model) {
-//
-//        String welcome = "Welcome to my awsome Cars App!";
-//
-//        model.addAttribute("welcome", welcome);
-//        model.addAttribute("cars", vehicleService.getAllVehiclesDtos());
-//        model.addAttribute("type", carTypesService.getCarTypes());
-//        return "vehicles";
-//    }
+    private void getHeadersInfo(HttpServletRequest request, HttpServletResponse response) {
+
+
+
+        Map<String, String> map = new HashMap<>();
+
+
+
+        Enumeration headerNames = request.getHeaderNames();
+
+        while (headerNames.hasMoreElements()) {
+
+
+
+            String key = headerNames.nextElement().toString();
+
+            String value = request.getHeader(key);
+
+            map.put(key, value);
+
+        }
+
+
+
+        System.out.println(" * * REQUEST * * * *");
+
+        map.forEach((k, v) -> System.out.println(k + ": " + v));
+
+        System.out.println(" * * *RESPONSE * * * *");
+
+        Collection<String> headers = response.getHeaders("");
+
+        headers.forEach(System.out::println);
+
+        System.out.println(" * * END * * * *");
+
+    }
+
+
 
 
 }
