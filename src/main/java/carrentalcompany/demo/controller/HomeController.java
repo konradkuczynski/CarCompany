@@ -41,7 +41,19 @@ public class HomeController {
         model.addAttribute("welcome", welcome);
         return "index";
     }
+
     @PreAuthorize("hasRole('ADMIN')")
+    @RequestMapping(value = "admin", method = RequestMethod.GET)
+    public String getAdminVehiclesPage(Model model) {
+
+        String welcome = "Welcome to my awsome Cars App!";
+
+        model.addAttribute("welcome", welcome);
+        model.addAttribute("cars", vehicleService.getAllVehiclesDtos());
+        model.addAttribute("type", carTypesService.getCarTypes());
+        return "admin";
+    }
+
     @RequestMapping(value = "vehicles", method = RequestMethod.GET)
     public String getVehiclesPage(Model model) {
 
@@ -49,7 +61,7 @@ public class HomeController {
 
         model.addAttribute("welcome", welcome);
         model.addAttribute("cars", vehicleService.getAllVehiclesDtos());
-        model.addAttribute("type", carTypesService.getCarTypes());
+//        model.addAttribute("type", carTypesService.getCarTypes());
         return "vehicles";
     }
 
