@@ -72,48 +72,45 @@ public class HomeController {
 
         vehicleService.addVehicle(car);
 
-        return "redirect:/vehicles";
+        return "redirect:/admin";
+    }
+
+    @PostMapping("update")
+    public String updateVehicle(@Valid @ModelAttribute VehicleDtos car, Model model) {
+
+        System.out.println(car.toString());
+
+        model.addAttribute("car", car);
+
+        return "update";
+    }
+
+    @PostMapping("upd")
+    public String updVehicle(@Valid @ModelAttribute VehicleDtos car, String plate, Model model) {
+
+        System.out.println("upd!!!");
+        System.out.println(car.toString());
+        model.addAttribute("car", car);
+        model.addAttribute("plate", plate);
+        vehicleService.updateVehicle(car, plate);
+
+        return "redirect:/admin";
     }
 
     private void getHeadersInfo(HttpServletRequest request, HttpServletResponse response) {
 
-
-
         Map<String, String> map = new HashMap<>();
-
-
-
         Enumeration headerNames = request.getHeaderNames();
-
         while (headerNames.hasMoreElements()) {
-
-
-
             String key = headerNames.nextElement().toString();
-
             String value = request.getHeader(key);
-
             map.put(key, value);
-
         }
-
-
-
         System.out.println(" * * REQUEST * * * *");
-
         map.forEach((k, v) -> System.out.println(k + ": " + v));
-
         System.out.println(" * * *RESPONSE * * * *");
-
         Collection<String> headers = response.getHeaders("");
-
         headers.forEach(System.out::println);
-
         System.out.println(" * * END * * * *");
-
     }
-
-
-
-
 }

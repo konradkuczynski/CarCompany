@@ -2,6 +2,7 @@ package carrentalcompany.demo.model;
 
 
 import lombok.*;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 
@@ -25,6 +26,7 @@ public class Vehicle {
 
     private float price;
     private float amortization;
+    @Column(unique = true)
     private String plate;
 
     @Override

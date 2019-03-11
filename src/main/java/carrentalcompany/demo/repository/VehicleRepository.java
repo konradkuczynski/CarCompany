@@ -13,4 +13,6 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Integer> {
 
     @Query(value = "select * FROM vehicle where  id=?1", nativeQuery = true) //liczna 1 oznacza numer parametru w metodzie
     Optional<Vehicle> findVehicleByModel(String model);
+
+    Optional<Vehicle> findVehicleByPlate(String plate);
 }

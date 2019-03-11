@@ -1,5 +1,5 @@
 <div class="col-sm-12" xmlns:th="http://www.thymeleaf.org">
-    <table class="table table-dark" th:fragment="table">
+    <table class="table table-dark" th:fragment="tableadmin">
         <tr>
             <th>plate</th>
             <th>type</th>
@@ -14,19 +14,20 @@
             <td th:text="${car.getPrice()}"></td>
             <td th:text="${car.getAmortization()}"></td>
 
-            <!--<td><form th:action="@{/update}" action="update" th:object="${car}" method="post">-->
-                <!--<div class="form-group">-->
-                    <!--<input type="hidden" th:value="${car.getBrand()}" name="brand">-->
-                    <!--<input type="hidden" th:value="${car.getModel()}" name="model">-->
-                    <!--<input type="hidden" th:value="${car.getPower()}" name="power">-->
-                    <!--<input type="hidden" th:value="${car.getPlate()}" name="plate">-->
+            <td><form th:action="@{/update}" action="update" th:object="${car}" method="post">
+                <div class="form-group">
+                    <input type="hidden" th:value="${car.getPlate()}" name="plate">
+                    <input type="hidden" th:value="${car.getCarType()}" name="carType">
+                    <input type="hidden" th:value="${car.getModel()}" name="model">
+                    <input type="hidden" th:value="${car.getPrice()}" name="price">
+                    <input type="hidden" th:value="${car.getAmortization()}" name="amortization">
 
-                    <!--<button class="btn btn-sm btn-success" type="submit"-->
-                            <!--style="margin: 0.2em; width: 60px; float: left">update-->
-                    <!--</button>-->
-                <!--</div>-->
-            <!--</form>-->
-            <!--</td>-->
+                    <button class="btn btn-sm btn-success" type="submit"
+                            style="margin: 0.2em; width: 60px; float: left">update
+                    </button>
+                </div>
+            </form>
+            </td>
 
             <!--<td><form th:action="@{/delete}" action="delete" th:object="${car}" method="post">-->
                 <!--<div class="form-group">-->
@@ -43,4 +44,28 @@
             <!--</td>-->
         </tr>
     </table>
+
+    <table class="table table-dark" th:fragment="tableuser">
+        <tr>
+            <th>plate</th>
+            <th>type</th>
+            <th>model</th>
+            <th>price</th>
+            <th>amortization</th>
+        </tr>
+        <tr th:each="car : ${cars}">
+            <td th:text="${car.getPlate()}"></td>
+            <td th:text="${car.getCarType()}"></td>
+            <td th:text="${car.getModel()}"></td>
+            <td th:text="${car.getPrice()}"></td>
+            <td th:text="${car.getAmortization()}"></td>
+
+
+        </tr>
+    </table>
 </div>
+
+
+
+
+

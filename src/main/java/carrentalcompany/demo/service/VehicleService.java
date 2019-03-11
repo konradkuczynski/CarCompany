@@ -62,6 +62,21 @@ public class VehicleService {
         }
     }
 
+    public void updateVehicle(VehicleDtos vehicleDtos, String plate) {
+        Optional<Vehicle> car = vehicleRepository.findVehicleByPlate(plate);
+        Optional<CarTypes> optionalCarTypes = carTypesRepository.findCarTypesByType(vehicleDtos.getCarType());
+        if (car.isPresent()) {
+            car.get().setAmortization(vehicleDtos.getAmortization());
+            car.get().setCarTypes(optionalCarTypes.get());
+            car.get().setModel(vehicleDtos.getModel());
+            car.get().setPlate(vehicleDtos.getPlate());
+            car.get().setPrice(vehicleDtos.getPrice());
+
+            vehicleRepository.save(car.get());
+        }
+
+    }
+
 
     // ----------------------------------__DTOS-------------------------------------
 
