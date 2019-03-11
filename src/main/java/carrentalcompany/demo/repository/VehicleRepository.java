@@ -15,4 +15,9 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Integer> {
     Optional<Vehicle> findVehicleByModel(String model);
 
     Optional<Vehicle> findVehicleByPlate(String plate);
+
+    void deleteByPlate(String plate);
+
+//    @Query(value = "DELETE FROM vehicle WHERE plate = ?1", nativeQuery = true)
+//    void deleteByPlate(String plate);
 }

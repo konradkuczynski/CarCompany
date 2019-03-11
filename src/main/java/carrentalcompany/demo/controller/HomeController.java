@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.Collection;
 import java.util.Enumeration;
@@ -93,6 +94,18 @@ public class HomeController {
         model.addAttribute("car", car);
         model.addAttribute("plate", plate);
         vehicleService.updateVehicle(car, plate);
+
+        return "redirect:/admin";
+    }
+
+    @PostMapping("delete")
+    @Transactional
+    public String deleteVehicle(@Valid @ModelAttribute VehicleDtos car) {
+
+        System.out.println("delete!!!");
+        System.out.println(car.toString());
+
+        vehicleService.deleteVehicle(car);
 
         return "redirect:/admin";
     }

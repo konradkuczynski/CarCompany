@@ -29,6 +29,21 @@
             </form>
             </td>
 
+            <td><form th:action="@{/delete}" action="update" th:object="${car}" method="post">
+                <div class="form-group">
+                    <input type="hidden" th:value="${car.getPlate()}" name="plate">
+                    <input type="hidden" th:value="${car.getCarType()}" name="carType">
+                    <input type="hidden" th:value="${car.getModel()}" name="model">
+                    <input type="hidden" th:value="${car.getPrice()}" name="price">
+                    <input type="hidden" th:value="${car.getAmortization()}" name="amortization">
+
+                    <button class="btn btn-sm btn-danger" type="submit"
+                            style="margin: 0.2em; width: 60px; float: left">delete
+                    </button>
+                </div>
+            </form>
+            </td>
+
             <!--<td><form th:action="@{/delete}" action="delete" th:object="${car}" method="post">-->
                 <!--<div class="form-group">-->
                     <!--<input type="hidden" th:value="${car.getBrand()}" name="brand">-->

@@ -77,6 +77,25 @@ public class VehicleService {
 
     }
 
+    public void deleteVehicle(VehicleDtos vehicleDtos) {
+
+        Optional<Vehicle> car = vehicleRepository.findVehicleByPlate(vehicleDtos.getPlate());
+//        Optional<CarTypes> optionalCarTypes = carTypesRepository.findCarTypesByType(vehicleDtos.getCarType());
+
+        if (car.isPresent()) {
+
+            vehicleRepository.deleteByPlate(car.get().getPlate());
+        }
+    }
+
+//    public boolean deleteCar(String plate) throws NotFoundException {
+//        Optional<Car> car= carRepository.findCarByPlate(plate);
+//        if(car.isPresent()) {
+//            carRepository.deleteById(car.get().getId());
+//            return false;
+//        } else {return false;}
+//    }
+
 
     // ----------------------------------__DTOS-------------------------------------
 
