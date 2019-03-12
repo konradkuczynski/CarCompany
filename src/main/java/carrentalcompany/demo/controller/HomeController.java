@@ -1,6 +1,7 @@
 package carrentalcompany.demo.controller;
 
 
+import carrentalcompany.demo.model.dtos.CarTypesDtos;
 import carrentalcompany.demo.model.dtos.VehicleDtos;
 import carrentalcompany.demo.service.CarTypesService;
 import carrentalcompany.demo.service.VehicleService;
@@ -126,4 +127,30 @@ public class HomeController {
         headers.forEach(System.out::println);
         System.out.println(" * * END * * * *");
     }
+
+    @RequestMapping(value = "admin/type", method = RequestMethod.GET)
+    public String getTypePage(Model model) {
+
+        String welcome = "Welcome to my awsome Cars App!";
+
+        model.addAttribute("welcome", welcome);
+//        model.addAttribute("cars", vehicleService.getAllVehiclesDtos());
+        model.addAttribute("type", carTypesService.getCarTypes());
+        return "type";
+    }
+
+    @PostMapping("admin/type/add")
+    public String addType(@Valid @ModelAttribute CarTypesDtos typesDtos) {
+
+        System.out.println("add type");
+        System.out.println(typesDtos.toString());
+
+        carTypesService.addCarTypes(typesDtos);
+
+        return "redirect:/admin/type";
+    }
 }
+
+
+
+//updtype

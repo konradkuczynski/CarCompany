@@ -78,6 +78,15 @@
 
         </tr>
     </table>
+
+    <table class="table table-dark" th:fragment="tabletype">
+        <tr>
+            <th>type</th>
+        </tr>
+        <tr th:each="t : ${type}">
+            <td th:text="${t.getType()}"></td>
+        </tr>
+    </table>
 </div>
 
 

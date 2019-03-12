@@ -1,13 +1,14 @@
 <div class="col-sm-12" xmlns:th="http://www.w3.org/1999/xhtml" th:fragment="add">
 
 
+    <button type="button" class="btn btn-primary btn-lg float-right mb-5" onclick="window.location.href='/admin/type'"> <i class="fas fa-user"></i> Add car type </button>
 
     <form  th:action="@{/add}" method="post" action="/add">
 
-        <input type="text" placeholder="type" name="plate"/>
-        <select th:each="typ : ${type}" name="carType">
+        <input type="text" placeholder="plate" name="plate"/>
+        <select  name="carType">
             <option  value="default">Select a type</option>
-            <option  th:text="${typ.getType()}" th:value="${typ.getType()}">
+            <option th:each="typ : ${type}"  th:text="${typ.getType()}" th:value="${typ.getType()}">
 
                 <!--<input type="hidden" name="carType" th:value="${typ.getType()}"/>-->
             </option>
@@ -22,17 +23,10 @@
 
 
 
+
+
 </div>
 </html>
 
-<!--private String model;-->
-<!--private String carType;-->
-<!--private float price;-->
-<!--private float amortization;-->
-<!--<tr th:each="car : ${cars}">-->
-    <!--<td th:text="${car.getId()}"></td>-->
-    <!--<td th:text="${car.getCarTypes().getType()}"></td>-->
-    <!--<td th:text="${car.getModel()}"></td>-->
-    <!--<td th:text="${car.getPrice()}"></td>-->
-    <!--<td th:text="${car.getAmortization()}"></td>-->
+
 
