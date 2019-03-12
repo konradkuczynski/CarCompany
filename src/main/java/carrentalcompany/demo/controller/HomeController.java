@@ -149,6 +149,20 @@ public class HomeController {
 
         return "redirect:/admin/type";
     }
+
+    @PostMapping("admin/type/update")
+    public String updateType(@Valid @ModelAttribute CarTypesDtos typesDtos,  String newtype, Model model) {
+
+        System.out.println("update type");
+        System.out.println(typesDtos.toString());
+        System.out.println(newtype);
+
+        model.addAttribute("t", typesDtos);
+        model.addAttribute("newtype", newtype);
+        carTypesService.updateCarTypes(typesDtos, newtype);
+
+        return "redirect:/admin/type";
+    }
 }
 
 

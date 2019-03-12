@@ -32,4 +32,18 @@ public class CarTypesService {
         }
 
     }
+
+    public void updateCarTypes(CarTypesDtos carTypesDtos, String newtype) {
+
+        Optional<CarTypes> carTypes = carTypesRepository.findCarTypesByType(carTypesDtos.getType());
+
+        if (carTypes.isPresent()) {
+            carTypes.get().setType(newtype);
+            carTypesRepository.save(carTypes.get());
+
+        } else {
+            System.out.println("Type exists!!!!!");
+
+        }
+    }
 }

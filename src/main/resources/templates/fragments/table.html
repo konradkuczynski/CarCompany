@@ -85,6 +85,16 @@
         </tr>
         <tr th:each="t : ${type}">
             <td th:text="${t.getType()}"></td>
+            <td><form th:action="@{/admin/type/update}" action="/admin/type/update" th:object="${t}" method="post">
+                <div class="form-group">
+                    <input type="hidden" th:value="${t.getType()}" name="type">
+                    <input type="text" name="newtype">
+                    <button class="btn btn-sm btn-danger" type="submit"
+                            style="margin: 0.2em; width: 60px; float: left">update
+                    </button>
+                </div>
+            </form>
+            </td>
         </tr>
     </table>
 </div>
