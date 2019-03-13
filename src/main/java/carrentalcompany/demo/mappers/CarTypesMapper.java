@@ -4,8 +4,9 @@ package carrentalcompany.demo.mappers;
 import carrentalcompany.demo.commons.Mapper;
 import carrentalcompany.demo.model.CarTypes;
 import carrentalcompany.demo.model.dtos.CarTypesDtos;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class CarTypesMapper implements Mapper<CarTypes, CarTypesDtos> {
 
 

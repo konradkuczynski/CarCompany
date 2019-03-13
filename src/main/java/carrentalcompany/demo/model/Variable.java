@@ -8,22 +8,19 @@ import javax.persistence.*;
 import java.util.Random;
 
 
-@Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Table(name = "variable")
+
 public class Variable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
 
-    private int variable;
+    private static int variable;
 
-    public void setVariableValue() {
+    public static int getVariable() {
+        return variable;
+    }
+
+    public static void setVariableValue() {
         Random r = new Random();
-        this.variable =r.nextInt(30);
+        variable =r.nextInt(30);
     }
 
 }

@@ -1,9 +1,11 @@
 package carrentalcompany.demo.controller;
 
 
+import carrentalcompany.demo.model.ContactMessage;
 import carrentalcompany.demo.model.dtos.CarTypesDtos;
 import carrentalcompany.demo.model.dtos.VehicleDtos;
 import carrentalcompany.demo.service.CarTypesService;
+import carrentalcompany.demo.service.EmailSenderService;
 import carrentalcompany.demo.service.VehicleService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -28,10 +30,12 @@ public class HomeController {
 
     private VehicleService vehicleService;
     private CarTypesService carTypesService;
+    private EmailSenderService emailSenderService;
 
-    public HomeController(VehicleService vehicleService, CarTypesService carTypesService) {
+    public HomeController(VehicleService vehicleService, CarTypesService carTypesService, EmailSenderService emailSenderService) {
         this.vehicleService = vehicleService;
         this.carTypesService = carTypesService;
+        this.emailSenderService = emailSenderService;
     }
 
     @RequestMapping(value = "home")
@@ -162,6 +166,29 @@ public class HomeController {
         carTypesService.updateCarTypes(typesDtos, newtype);
 
         return "redirect:/admin/type";
+    }
+
+    @RequestMapping(value = "contact", method = RequestMethod.GET)
+    public String getContactPage(Model model) {
+
+        String welcome = "Welcome to my awsome Cars App!";
+
+        model.addAttribute("welcome", welcome);
+
+//
+        return "contact";
+    }
+
+    @PostMapping("/contact/message")
+    public String addMessage(@Valid @ModelAttribute ContactMessage contactMessage) {
+
+        System.out.println("contact message");
+        System.out.println(contactMessage.toString());
+
+//
+        emailSenderService.sendEmail(contactMessage);
+
+        return "redirect:/contact";
     }
 }
 
