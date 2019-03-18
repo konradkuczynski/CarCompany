@@ -2,10 +2,13 @@ package carrentalcompany.demo.controller;
 
 
 import carrentalcompany.demo.model.ContactMessage;
+import carrentalcompany.demo.model.Reservation;
 import carrentalcompany.demo.model.dtos.CarTypesDtos;
+import carrentalcompany.demo.model.dtos.ReservationDtos;
 import carrentalcompany.demo.model.dtos.VehicleDtos;
 import carrentalcompany.demo.service.CarTypesService;
 import carrentalcompany.demo.service.EmailSenderService;
+import carrentalcompany.demo.service.ReservationService;
 import carrentalcompany.demo.service.VehicleService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -31,11 +34,13 @@ public class HomeController {
     private VehicleService vehicleService;
     private CarTypesService carTypesService;
     private EmailSenderService emailSenderService;
+    private ReservationService reservationService;
 
-    public HomeController(VehicleService vehicleService, CarTypesService carTypesService, EmailSenderService emailSenderService) {
+    public HomeController(VehicleService vehicleService, CarTypesService carTypesService, EmailSenderService emailSenderService, ReservationService reservationService) {
         this.vehicleService = vehicleService;
         this.carTypesService = carTypesService;
         this.emailSenderService = emailSenderService;
+        this.reservationService = reservationService;
     }
 
     @RequestMapping(value = "home")
@@ -189,6 +194,40 @@ public class HomeController {
         emailSenderService.sendEmail(contactMessage);
 
         return "redirect:/contact";
+    }
+
+    @PostMapping("/reservation")
+    public String addReservation(@Valid @ModelAttribute VehicleDtos vehicleDtos) {
+
+        System.out.println("reservation post controller");
+        System.out.println(vehicleDtos.toString());
+
+//
+//        emailSenderService.sendEmail(contactMessage);
+
+        return "redirect:/contact";
+    }
+
+    @PostMapping("/reservation/choose")
+    public String chooseVehicle(@Valid @ModelAttribute VehicleDtos car, Model model) {
+
+        System.out.println(car.toString());
+
+        model.addAttribute("car", car);
+
+        return "getvehicle";
+    }
+
+    @PostMapping("/reservation/reserve")
+    public String reserveVehicle(@Valid @ModelAttribute VehicleDtos car, @Valid @ModelAttribute ReservationDtos reservation) {
+
+        System.out.println(car.toString());
+        System.out.println(reservation.toString());
+
+//        vehicleService.addVehicle(car);
+        reservationService.addReservation(car, reservation);
+
+        return "redirect:/home";
     }
 }
 

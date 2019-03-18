@@ -75,6 +75,20 @@
             <td th:text="${car.getPrice()}"></td>
             <td th:text="${car.getAmortization()}"></td>
 
+            <td><form th:action="@{/reservation/choose}" action="/reservation/choose" th:object="${car}" method="post">
+                <div class="form-group">
+                    <input type="hidden" th:value="${car.getPlate()}" name="plate">
+                    <input type="hidden" th:value="${car.getCarType()}" name="carType">
+                    <input type="hidden" th:value="${car.getModel()}" name="model">
+                    <input type="hidden" th:value="${car.getPrice()}" name="price">
+                    <input type="hidden" th:value="${car.getAmortization()}" name="amortization">
+
+                    <button class="btn btn-sm btn-success" type="submit"
+                            style="margin: 0.2em; width: 60px; float: left">choose
+                    </button>
+                </div>
+            </form>
+            </td>
 
         </tr>
     </table>
